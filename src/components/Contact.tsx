@@ -10,10 +10,10 @@ const Contact: React.FC = () => {
     if (!formRef.current) return;
 
     emailjs.sendForm(
-      'service_ebfms0s',
-      'template_22nmlp8',
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       formRef.current,
-      'hRufxtEO04Q5ET1NK'
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => setStatus('Message sent!'))
     .catch(() => setStatus('Failed to send message.'));
