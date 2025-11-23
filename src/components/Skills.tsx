@@ -1,39 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import CircularSkill from './CircularSkill';
+
+const skills = [
+  { name: 'HTML / CSS / Tailwind', level: 90, color: 'bg-purple-500' },
+  { name: 'JavaScript / TypeScript', level: 85, color: 'bg-blue-500' },
+  { name: 'React / Framer Motion', level: 80, color: 'bg-pink-500' },
+  { name: 'Node.js / Express', level: 70, color: 'bg-green-500' },
+  { name: 'Git / GitHub', level: 90, color: 'bg-yellow-500' }
+];
 
 const Skills: React.FC = () => {
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReducedMotion) {
-      const skillBars = document.querySelectorAll('.skill-bar');
-      skillBars.forEach((bar, i) => {
-        const width = (bar as HTMLElement).dataset.width || '80%';
-        setTimeout(() => (bar as HTMLElement).style.width = width, 500 + i * 300);
-      });
-    }
-  }, []);
-
   return (
-    <section id="skills" className="py-20 px-4 bg-gray-900">
-      <h2 className="text-3xl font-bold text-center mb-10 opacity-0">Skills</h2>
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div>
-          <p className="mb-1">HTML / CSS / Tailwind</p>
-          <div className="w-full bg-gray-700 rounded-full h-4">
-            <div className="bg-purple-500 h-4 rounded-full skill-bar w-0" data-width="80%"></div>
-          </div>
-        </div>
-        <div>
-          <p className="mb-1">JavaScript / TypeScript</p>
-          <div className="w-full bg-gray-700 rounded-full h-4">
-            <div className="bg-blue-500 h-4 rounded-full skill-bar w-0" data-width="80%"></div>
-          </div>
-        </div>
-        <div>
-          <p className="mb-1">React / Framer Motion</p>
-          <div className="w-full bg-gray-700 rounded-full h-4">
-            <div className="bg-pink-500 h-4 rounded-full skill-bar w-0" data-width="75%"></div>
-          </div>
-        </div>
+    <section id="skills" className="py-20 px-4 bg-gray-900 text-white">
+      <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
+      <div className="flex flex-wrap justify-center gap-8">
+        {skills.map((skill, idx) => (
+          <CircularSkill key={idx} skill={skill.name} level={skill.level} color={skill.color} />
+        ))}
       </div>
     </section>
   );
