@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 interface SkillProps {
   skill: string;
-  level: number; // percentage
+  level: number;
   color: string;
 }
 
@@ -15,14 +15,7 @@ const CircularSkill: React.FC<SkillProps> = ({ skill, level, color }) => {
   return (
     <div className="flex flex-col items-center">
       <svg width={120} height={120}>
-        <circle
-          cx={60}
-          cy={60}
-          r={radius}
-          stroke="#333"
-          strokeWidth={10}
-          fill="transparent"
-        />
+        <circle cx={60} cy={60} r={radius} stroke="#333" strokeWidth={10} fill="transparent" />
         <motion.circle
           cx={60}
           cy={60}
