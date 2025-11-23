@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
-const Contact: React.FC = () => (
-  <section id="contact" className="py-20 px-4 bg-gray-800">
-    <h2 className="text-3xl font-bold text-center mb-10 opacity-0">Contact Me</h2>
-    <div className="flex flex-col items-center gap-6">
-      <p>Reach out via email, phone, or social links:</p>
-      <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-        <a href="mailto:asimkhattak983@gmail.com" className="hover:text-purple-500 transition">Email: asimkhattak983@gmail.com</a>
-        <a href="tel:+923374817436" className="hover:text-purple-500 transition">Phone: +92 333 748 17436</a>
-        <a href="https://www.linkedin.com/in/asim-khattak" target="_blank" className="hover:text-purple-500 transition">LinkedIn</a>
-        <a href="https://github.com/asimkhattak" target="_blank" className="hover:text-purple-500 transition">GitHub</a>
+const Contact: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',
+      'YOUR_TEMPLATE_ID',
+      formRef.current,
+      'YOUR_PUBLIC_KEY'
+    )
+    .then(() => setStatus('Message sent!'))
+    .catch(() => setStatus('Failed to send message.'));
+  };
+
+  return (
+    <section id="contact" className="py-20 px-4 bg-gray-800 text-white">
+      <h2 className="text-3xl font-bold text-center mb-10">Contact Me</h2>
+      <div className="flex flex-col items-center gap-6">
+        <p>Email: <a href="mailto:asimkhattak983@gmail.com" className="text-purple-500 hover:underline">asimkhattak983@gmail.com</a></p>
+        <p>Phone: <a href="tel:+923374817436" className="text-purple-500 hover:underline">+92 333 748 17436</a></p>
+        <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-md">
+          <input type="text" name="name" placeholder="Your Name" className="p-3 rounded-md text-black" required/>
+          <input type="email" name="email" placeholder="Your Email" className="p-3 rounded-md text-black" required/>
+          <textarea name="message" placeholder="Your Message" className="p-3 rounded-md text-black h-32" required/>
+          <button type="submit" className="bg-purple-500 hover:bg-purple-600 text-white p-3 rounded-md shadow-lg transition">
+            Send Message
+          </button>
+          {status && <p className="mt-2 text-center">{status}</p>}
+        </form>
       </div>
-      <form className="mt-8 flex flex-col gap-4 w-full max-w-md">
-        <input type="text" placeholder="Your Name" className="p-3 rounded-md text-black" />
-        <input type="email" placeholder="Your Email" className="p-3 rounded-md text-black" />
-        <textarea placeholder="Your Message" className="p-3 rounded-md text-black h-32" />
-        <button type="submit" className="bg-purple-500 hover:bg-purple-600 text-white p-3 rounded-md shadow-lg transition">Send Message</button>
-      </form>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Contact;
