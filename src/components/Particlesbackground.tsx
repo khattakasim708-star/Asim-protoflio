@@ -9,12 +9,12 @@ const ParticlesBackground: React.FC = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles = Array.from({ length: 150 }).map(() => ({
+    const particles = Array.from({ length: 200 }).map(() => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       r: Math.random() * 2 + 1,
       dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5
+      dy: (Math.random() - 0.5) * 0.5,
     }));
 
     const animate = () => {
@@ -33,6 +33,10 @@ const ParticlesBackground: React.FC = () => {
     };
 
     animate();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
   }, []);
 
   return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10"></canvas>;
