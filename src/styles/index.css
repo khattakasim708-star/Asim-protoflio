@@ -11,3 +11,22 @@
 .animate-fadeInUp {
   animation: fadeInUp 1s ease forwards;
 }
+
+/* Gradient Text Animation */
+.gradient-text {
+  background: linear-gradient(90deg, #4F46E5, #6366F1, #F43F5E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Card Hover Animation */
+.card-hover:hover {
+  transform: scale(1.05) rotate(1deg);
+  transition: all 0.3s ease-in-out;
+}
