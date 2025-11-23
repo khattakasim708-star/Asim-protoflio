@@ -10,10 +10,10 @@ const Contact: React.FC = () => {
     if (!formRef.current) return;
 
     emailjs.sendForm(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
+      'service_ebfms0s',
+      'template_22nmlp8',
       formRef.current,
-      'YOUR_PUBLIC_KEY'
+      'hRufxtEO04Q5ET1NK'
     )
     .then(() => setStatus('Message sent!'))
     .catch(() => setStatus('Failed to send message.'));
