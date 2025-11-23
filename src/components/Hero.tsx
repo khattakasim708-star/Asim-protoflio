@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
         transition={{ duration: 1 }}
         className="text-6xl md:text-7xl font-extrabold mb-4 gradient-text"
       >
-        Hi, I'm Asim
+        Asim Khattak
       </motion.h1>
       <motion.p
         initial={{ opacity: 0 }}
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
         transition={{ delay: 0.5, duration: 1 }}
         className="text-xl md:text-2xl mb-6"
       >
-        I craft cinematic, interactive web experiences.
+        Full-Stack Developer & UI/UX Designer creating cinematic web experiences
       </motion.p>
       <motion.div
         initial={{ opacity: 0 }}
@@ -33,13 +33,13 @@ const Hero: React.FC = () => {
           href="#projects"
           className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg shadow-lg transform transition hover:scale-105"
         >
-          Projects
+          View Projects
         </a>
         <a
           href="#contact"
           className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-lg transform transition hover:scale-105"
         >
-          Contact
+          Contact Me
         </a>
       </motion.div>
     </section>
